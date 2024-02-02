@@ -8,8 +8,8 @@ export const BoxInput = ({
     editable = false,
     textLabel,
     placeholder,
-    fieldValue = null,
-    onchangeText = null,
+    fieldValue,
+    onchangeText,
     KeyType = 'default',
     maxLenght
 }) => {
