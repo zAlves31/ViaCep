@@ -9,6 +9,7 @@ export function Home(){
 
     const [cep, setCep] = useState();
     const [endereco, setEndereco] = useState({});
+    const [estado, setEstado] = useState()
 
     useEffect(() => {
         if(cep){
@@ -23,6 +24,9 @@ export function Home(){
         try{
             const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
             setEndereco(response.data)
+
+            const estado = await axios.get (`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${response.data.uf}`)
+            setEstado(estado.data.nome);
         }catch(error){
             console.error
         } 
@@ -73,7 +77,7 @@ export function Home(){
                         fieldWidth={65}
                         textLabel="Estado"
                         placeholder="Estado..."
-                        fieldValue={endereco.uf}
+                        fieldValue={estado}
                         
                     />
                     
