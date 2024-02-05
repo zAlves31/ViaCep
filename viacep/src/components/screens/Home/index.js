@@ -21,7 +21,7 @@ export function Home(){
 
     const getcep = async () => {
         try{
-            const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+            const response = await axios.get(`https://brasilaberto.com/api/v1/zipcode/${cep}`) // https://viacep.com.br/ws/${cep}/json/
             setEndereco(response.data)
         }catch(error){
             console.error
@@ -51,21 +51,21 @@ export function Home(){
                 <BoxInput
                     textLabel="Logradouro"
                     placeholder="Logradouro..."
-                    fieldValue={endereco.logradouro}
+                    fieldValue={endereco.result.street}
                        
                 />
 
                 <BoxInput
                     textLabel="Bairro"
                     placeholder="Bairro..."
-                    fieldValue={endereco.bairro}
+                    fieldValue={endereco.result.district}
                         
                 />
 
                 <BoxInput
                     textLabel="Cidade"
                     placeholder="Cidade..."
-                    fieldValue={endereco.localidade}
+                    fieldValue={endereco.result.city}
                                       
                 />
                 <ContainerAdd>
@@ -73,7 +73,7 @@ export function Home(){
                         fieldWidth={65}
                         textLabel="Estado"
                         placeholder="Estado..."
-                        fieldValue={endereco.uf}
+                        fieldValue={endereco.result.state}
                         
                     />
                     
@@ -81,7 +81,7 @@ export function Home(){
                         fieldWidth={25}
                         textLabel="UF"
                         placeholder="UF"
-                        fieldValue={endereco.uf}
+                        fieldValue={endereco.result.stateShortname}
                         
                     />
                 </ContainerAdd>
